@@ -1,0 +1,4 @@
+export PDSH_RCMD_TYPE=ssh
+export WCOLL=/etc/machines.list
+export PDSH_SSH_ARGS_APPEND="-o StrictHostKeyChecking=no"
+export PDSH_MISC_MODULES='<%= @default_group_module -%>'
