@@ -3,7 +3,6 @@
 <p>Puppet module to configure pdsh and node group definitions using exported resources</p>
 
 Dependencies:
-  marcgascon-profile_d
 
 Supported OS:
   RHEL variants.  Tested on RHEL6 and RHEL7
