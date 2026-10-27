@@ -2,7 +2,6 @@
 # include on nodes where you want pdsh and enabled pdsh modules to be installed
 #
 # Dependencies:
-#   marcgascon-profile_d
 #
 # Supported OS:
 #   RHEL variants.  Tested on RHEL6 and RHEL7
@@ -47,8 +46,13 @@ class pdsh (
       tag      => 'pdsh'
    }
 
-   profile_d::script { 'pdsh.sh':
-      content  => template('pdsh/pdsh.sh.erb')
+   # was profile_d::script (marcgascon-profile_d, broken by stdlib 9 and removed); same file, header and mode
+   file { '/etc/profile.d/pdsh.sh':
+      ensure  => 'file',
+      mode    => '0644',
+      owner   => 'root',
+      group   => 'root',
+      content => "#!/bin/sh\n# File managed by Puppet\n${template('pdsh/pdsh.sh.erb')}",
    }
 
    # if puppet is run with this fact set it will recreate from scratch all the group files
