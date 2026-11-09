@@ -57,7 +57,7 @@ class pdsh (
 
    # if puppet is run with this fact set it will recreate from scratch all the group files
    # FACTER_pdsh_cleanup='true' puppet agent -t
-   if $::pdsh_cleanup {
+   if $facts['pdsh_cleanup'] {
       Exec['pdsh_cleanup'] -> File <| tag == 'pdsh' |>
          exec { 'pdsh_cleanup':
             command => '/bin/rm -f /etc/dsh/group/* ; /bin/rm -f /etc/machines.list; /bin/rm -f /etc/genders'
